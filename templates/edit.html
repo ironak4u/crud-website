@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block body %}
+<main class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-12 lg:col-9 xl:col-8">
+      <section aria-labelledby="edit-task-heading">
+        <div class="card shadow-sm">
+          <div class="card-body p-4">
+            <h1 id="edit-task-heading" class="h3 mb-4">Update Task</h1>
+            <form method="post" action="{{ url_for('edit_task', task_id=todo.id) }}">
+              <div class="mb-3">
+                <label class="form-label" for="edit-task-title">Task title</label>
+                <input class="form-control" type="text" id="edit-task-title" name="title"
+                  value="{{ todo.title }}" maxlength="100" required>
+              </div>
+
+              <div class="mb-4">
+                <label class="form-label" for="edit-task-description">Description</label>
+                <textarea class="form-control" id="edit-task-description" name="description"
+                  rows="3" maxlength="200">{{ todo.description or '' }}</textarea>
+              </div>
+
+              <button class="btn-solid theme-primary fs-lg fw-bold" type="submit">Save Changes</button>
+              <a class="btn-subtle theme-secondary" href="{{ url_for('Home') }}">Cancel</a>
+            </form>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
+{% endblock body %}

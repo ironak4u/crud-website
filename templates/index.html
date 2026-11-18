@@ -1,130 +1,103 @@
 {% extends "base.html" %}
-
 {% block body %}
-  <main class="container py-5">
-    <div class="row justify-content-center">
-      <div class="col-12 lg:col-9 xl:col-8">
+<main class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-12 lg:col-9 xl:col-8">
 
-        <!-- Home -->
-        <section id="home" class="mb-5" aria-labelledby="home-heading">
-          <h1 id="home-heading" class="h3 mb-2">Welcome to TaskFlow</h1>
-          <p class="fg-2 mb-0">A simple place to capture what needs doing, track progress, and keep your day on track.</p>
-        </section>
+      <!-- Home -->
+      <section id="home" class="mb-5" aria-labelledby="home-heading">
+        <h1 id="home-heading" class="h3 mb-2">Welcome to TaskFlow</h1>
+        <p class="fg-2 mb-0">A simple place to capture what needs doing, track progress, and keep your day on track.</p>
+      </section>
 
-        <!-- Create -->
-        <section class="mb-5" aria-labelledby="add-task-heading">
-          <div class="card shadow-sm">
-            <div class="card-body p-4">
-              <h2 id="add-task-heading" class="h4 mb-4">Add a New Task</h2>
+      <!-- Create -->
+      <section class="mb-5" aria-labelledby="add-task-heading">
+        <div class="card shadow-sm">
+          <div class="card-body p-4">
+            <h2 id="add-task-heading" class="h4 mb-4">Add a New Task</h2>
 
-              <!-- Connect this form to the backend create-task route when available. -->
-              <form method="post">
-                <div class="mb-3">
-                  <label class="form-label" for="task-title">Task title</label>
-                  <input class="form-control" type="text" id="task-title" name="title" placeholder="e.g. Prepare the weekly report" required>
-                </div>
-
-                <div class="mb-4">
-                  <label class="form-label" for="task-description">
-                    Description <span class="fg-3 fw-normal">(optional)</span>
-                  </label>
-                  <textarea class="form-control" id="task-description" name="description" rows="3" placeholder="Add any useful details..."></textarea>
-                </div>
-
-                <button class="btn-solid theme-primary fs-lg fw-bold" type="submit">Add Task</button>
-              </form>
-            </div>
-          </div>
-        </section>
-
-        <!-- Read, update, delete -->
-        <section id="todo-list" aria-labelledby="todo-list-heading">
-          <div class="row g-2 align-items-center justify-content-between mb-3">
-            <div class="col-auto">
-              <div class="d-flex align-items-center gap-2">
-                <h2 id="todo-list-heading" class="h4 mb-0">To-Do List</h2>
-                <span class="badge badge-subtle theme-secondary fs-sm fw-medium">3 tasks</span>
+            <!-- Connect this form to the backend create-task route when available. -->
+            <form method="post">
+              <div class="mb-3">
+                <label class="form-label" for="task-title">Task title</label>
+                <input class="form-control" type="text" id="task-title" name="title"
+                  placeholder="e.g. Prepare the weekly report" required>
               </div>
-            </div>
-            <div class="col-12 md:col-6 lg:col-5">
-              <!-- Submits ?q=... to the page; actual filtering needs backend support (or JavaScript). -->
-              <form method="get" action="#todo-list" role="search">
-                <label class="visually-hidden" for="task-search">Search tasks</label>
-                <div class="input-group">
-                  <input class="form-control" type="search" id="task-search" name="q" placeholder="Search tasks">
-                  <button class="btn-outline theme-primary" type="submit">Search</button>
-                </div>
-              </form>
-            </div>
-          </div>
 
-          <div class="table-responsive table-card shadow-sm">
-            <table class="table table-hover align-middle mb-0">
-              <caption class="visually-hidden">Tasks with their description, status, and available actions.</caption>
-              <thead>
-                <tr>
-                  <th scope="col" class="fs-sm fw-semibold fg-3 text-uppercase d-none md:d-table-cell">ID</th>
-                  <th scope="col" class="fs-sm fw-semibold fg-3 text-uppercase">Task</th>
-                  <th scope="col" class="fs-sm fw-semibold fg-3 text-uppercase d-none md:d-table-cell">Description</th>
-                  <th scope="col" class="fs-sm fw-semibold fg-3 text-uppercase">Status</th>
-                  <th scope="col" class="fs-sm fw-semibold fg-3 text-uppercase text-end">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                <!-- Static sample rows: replace with a loop over stored tasks once the backend exists. -->
-                <tr>
-                  <td class="fw-normal fg-2 py-3 d-none md:d-table-cell">1</td>
-                  <th scope="row" class="fw-medium py-3">Draft project proposal</th>
-                  <td class="fg-2 py-3 d-none md:d-table-cell">Outline goals, scope, and timeline.</td>
-                  <td class="py-3"><span class="badge badge-subtle theme-warning fg-body"><span class="d-inline-block align-middle rounded-circle bg-warning me-1 p-1" aria-hidden="true"></span>Pending</span></td>
-                  <td class="text-end py-3">
-                    <div class="d-inline-flex flex-column md:flex-row gap-1 md:gap-2">
-                      <button class="btn-subtle theme-secondary btn-sm" type="button" aria-label="Edit task 1">Edit</button>
-                      <button class="btn-subtle theme-danger btn-sm" type="button" aria-label="Delete task 1">Delete</button>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="fw-normal fg-2 py-3 d-none md:d-table-cell">2</td>
-                  <th scope="row" class="fw-medium py-3">Review pull requests</th>
-                  <td class="fg-2 py-3 d-none md:d-table-cell">Review open PRs before stand-up.</td>
-                  <td class="py-3"><span class="badge badge-subtle theme-success fg-body"><span class="d-inline-block align-middle rounded-circle bg-success me-1 p-1" aria-hidden="true"></span>Completed</span></td>
-                  <td class="text-end py-3">
-                    <div class="d-inline-flex flex-column md:flex-row gap-1 md:gap-2">
-                      <button class="btn-subtle theme-secondary btn-sm" type="button" aria-label="Edit task 2">Edit</button>
-                      <button class="btn-subtle theme-danger btn-sm" type="button" aria-label="Delete task 2">Delete</button>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="fw-normal fg-2 py-3 d-none md:d-table-cell">3</td>
-                  <th scope="row" class="fw-medium py-3">Update documentation</th>
-                  <td class="fg-2 py-3 d-none md:d-table-cell">Refresh the setup guide.</td>
-                  <td class="py-3"><span class="badge badge-subtle theme-warning fg-body"><span class="d-inline-block align-middle rounded-circle bg-warning me-1 p-1" aria-hidden="true"></span>Pending</span></td>
-                  <td class="text-end py-3">
-                    <div class="d-inline-flex flex-column md:flex-row gap-1 md:gap-2">
-                      <button class="btn-subtle theme-secondary btn-sm" type="button" aria-label="Edit task 3">Edit</button>
-                      <button class="btn-subtle theme-danger btn-sm" type="button" aria-label="Delete task 3">Delete</button>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
+              <div class="mb-4">
+                <label class="form-label" for="task-description">
+                  Description <span class="fg-3 fw-normal">(optional)</span>
+                </label>
+                <textarea class="form-control" id="task-description" name="description" rows="3"
+                  placeholder="Add any useful details..."></textarea>
+              </div>
 
-        <!-- About -->
-        <section id="about" class="mt-5" aria-labelledby="about-heading">
-          <div class="card shadow-sm">
-            <div class="card-body p-4">
-              <h2 id="about-heading" class="h4 mb-3">About me</h2>
-              <p class="fg-2">Hi! I'm the maker of TaskFlow. I built this small page to keep my own day organized: add a task, track its status, and keep the list short enough to be useful.</p>
-              <p class="fg-2 mb-0">It is written in plain HTML with Bootstrap 6 — no custom CSS and no extra JavaScript — so it stays fast, accessible, and easy to maintain.</p>
+              <button class="btn-solid theme-primary fs-lg fw-bold" type="submit">Add Task</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- Read, update, delete -->
+      <section id="todo-list" aria-labelledby="todo-list-heading">
+        <div class="row g-2 align-items-center justify-content-between mb-3">
+          <div class="col-auto">
+            <div class="d-flex align-items-center gap-2">
+              <h2 id="todo-list-heading" class="h4 mb-0">To-Do List</h2>
+              <span class="badge badge-subtle theme-secondary fs-sm fw-medium">
+                {{ todos|default([], true)|length }} tasks
+              </span>
             </div>
           </div>
-        </section>
+        </div>
 
-      </div>
+        <div class="table-responsive table-card shadow-sm">
+          <table class="table table-hover align-middle mb-0">
+            <caption class="visually-hidden">Tasks with their description, creation date, and available actions.</caption>
+            <thead>
+              <tr>
+                <th scope="col" class="fs-sm fw-semibold fg-3 text-uppercase d-none md:d-table-cell">ID</th>
+                <th scope="col" class="fs-sm fw-semibold fg-3 text-uppercase">Task</th>
+                <th scope="col" class="fs-sm fw-semibold fg-3 text-uppercase">Description</th>
+                <th scope="col" class="fs-sm fw-semibold fg-3 text-uppercase">Created</th>
+                <th scope="col" class="fs-sm fw-semibold fg-3 text-uppercase text-end">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% if not todos|default([], true) %}
+              <tr>
+                <td colspan="5">
+                  <div class="alert theme-danger mb-0" role="alert">
+                    No todos yet. Add a todo above to get started.
+                  </div>
+                </td>
+              </tr>
+              {% endif %}
+              {% for todo in todos %}
+              <tr>
+                <td class="fw-normal fg-2 py-3 d-none md:d-table-cell">{{ loop.index }}</td>
+                <th scope="row" class="fw-medium py-3">{{ todo.title }}</th>
+                <td class="fg-2 py-3">
+                  {{ todo.description or 'No description' }}
+                </td>
+                <td class="py-3">{{ todo.created or 'Not recorded' }}</td>
+                <td class="text-end py-3">
+                  <div class="d-inline-flex gap-2">
+                    <a class="btn-subtle theme-primary btn-sm"
+                      href="{{ url_for('edit_task', task_id=todo.id) }}">Update</a>
+                    <form method="post" action="{{ url_for('delete_task', task_id=todo.id) }}"
+                      onsubmit="return confirm('Are you sure you want to delete this task?');">
+                      <button class="btn-subtle theme-danger btn-sm" type="submit"
+                        aria-label="Delete task {{ todo.id }}">Delete</button>
+                    </form>
+                  </div>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </section>
     </div>
-  </main>
+</main>
 {% endblock body %}
